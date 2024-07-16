@@ -12,7 +12,7 @@ export const authService = createApi({
       query: (data: loginRequestDTO) => ({
         method: "POST",
         body: data,
-        url: "/login",
+        url: "/auth/login",
       }),
       onQueryStarted: async (credentials, { dispatch, queryFulfilled }) => {
         const { data } = await queryFulfilled;
@@ -29,7 +29,7 @@ export const authService = createApi({
       query: (data: signUpRequestDTO) => ({
         method: "POST",
         body: data,
-        url: "/register",
+        url: "/auth/register",
       }),
       onQueryStarted: async (credentials, { dispatch, queryFulfilled }) => {
         const { data } = await queryFulfilled;
@@ -43,7 +43,7 @@ export const authService = createApi({
       },
     }),
     refreshToken: builder.query<loginResponse, void>({
-      query: () => "/refresh-token",
+      query: () => "/auth/refresh-token",
       onQueryStarted: async (credentials, { dispatch, queryFulfilled }) => {
         const { data } = await queryFulfilled;
         if (data.data?.access_token) {

@@ -1,11 +1,17 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
-import { BuildUrl, GetUserAuthToken } from "../helpers";
+import { GetUserAuthToken } from "../helpers";
 import { Config } from "../config";
-const baseUrl = BuildUrl(Config.baseApiUrl, "/auth");
+const baseUrl = Config.baseApiUrl;
 
 export const RTKCustomFetchBase = fetchBaseQuery({
   baseUrl,
-  headers: {
-    Authorization: `Bearer ${GetUserAuthToken()}`,
+  prepareHeaders: (headers) => {
+    // Access the token from local storage
+    const token = GetUserAuthToken();
+    if (token) {
+      // Set the authorization header with the token
+      headers.set("authorization", `Bearer ${token}`);
+    }
+    return headers;
   },
 });

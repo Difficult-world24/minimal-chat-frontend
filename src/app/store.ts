@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authService } from "../services/auth/auth";
+import { friendsService } from "../services/friends/friends";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { rtkQueryErrorLogger } from "../services/middlerwares/RequestHandler";
 import authUser from "./slices/AuthUser";
@@ -7,11 +8,13 @@ import authUser from "./slices/AuthUser";
 export const store = configureStore({
   reducer: {
     [authService.reducerPath]: authService.reducer,
+    [friendsService.reducerPath]: friendsService.reducer,
     authUser: authUser,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(authService.middleware)
+      .concat(friendsService.middleware)
       .concat(rtkQueryErrorLogger),
 });
 setupListeners(store.dispatch);

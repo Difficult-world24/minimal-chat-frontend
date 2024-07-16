@@ -20,7 +20,7 @@ export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
     });
   } else if (isFulfilled(action)) {
     const { payload } = action;
-    if (payload.message) {
+    if (payload?.message) {
       toast({
         title: "Yay!",
         colorScheme: "green",

@@ -1,3 +1,4 @@
+import { User } from "../../app/slices/AuthUser/type";
 import { ApiResponseDto } from "../type";
 
 export type loginRequestDTO = {
@@ -12,6 +13,6 @@ export type signUpRequestDTO = {
 };
 
 export type loginResponse = ApiResponseDto<{
-  user: any;
+  user: User;
   access_token: string;
 }>;
