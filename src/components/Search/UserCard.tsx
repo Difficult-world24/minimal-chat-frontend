@@ -26,7 +26,7 @@ const UserCard = ({ id, username, email, alreadyFriends }: UserCardPropsI) => {
                     </Stack>
                 </Stack>
                 {
-                    alreadyFriends &&
+                    !alreadyFriends &&
                     <Button onClick={async () => {
                         await sendFriendRequest({ friendId: id })
                     }} isLoading={processingRequest} colorScheme={'green'} rightIcon={<PlusSquareIcon />}>Add</Button>

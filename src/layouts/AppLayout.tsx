@@ -16,7 +16,6 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
                   "sidebar main main"
                   "sidebar main main"`}
             gridTemplateRows={'68px 50px 1fr'}
-            columnGap={'20px'}
             gridTemplateColumns={'70px 1fr 1fr'}
         >
             <GridItem area={'header'}>

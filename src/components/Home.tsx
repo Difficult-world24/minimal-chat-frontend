@@ -1,14 +1,27 @@
-import { Heading, Text } from "@chakra-ui/react"
-import { useAppSelector } from "../app/hooks"
+import { Grid, GridItem } from "@chakra-ui/react"
+import Chat from "./Chat"
+import ChatInterface from "./ChatInterface"
 
 const Home = () => {
-    const { user } = useAppSelector(state => state.authUser)
     return (
         <>
-            <div className="flex w-full flex-col h-full gap-2 items-center justify-center">
-                <Heading className="text-slate-600">Welcome!</Heading>
-                <Text className="text-slate-400 text-lg">{user?.email}</Text>
-            </div>
+            <Grid
+                h='100%'
+                w={'100%'}
+                templateAreas={`"tabs main"
+                  "tabs main"`}
+                gridTemplateRows={'1fr 1fr'}
+                columnGap={'16px'}
+                gridTemplateColumns={'390px 1fr'}
+            >
+                {/* Sidebar */}
+                <GridItem area={'tabs'}>
+                    <Chat />
+                </GridItem>
+                <GridItem className="px-0 pr-4 py-4" area={'main'}>
+                    <ChatInterface />
+                </GridItem>
+            </Grid>
         </>
     )
 }
